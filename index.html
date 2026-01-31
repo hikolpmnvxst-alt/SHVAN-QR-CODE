@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shvan QR Studio</title>
+    <title>Shvan QR Master - Full Options</title>
+    
+    <meta name="theme-color" content="#1e293b">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlNodmFuIFFSIiwKICAic2hvcnRfbmFtZSI6ICJTaHZhbiBRUiIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMWUyOTNiIiwKICAidGhlbWVfY29sb3IiOiAiIzFlMjkzYiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI0MS8yNDExNjYucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9">
+
     <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <style>
         :root { --primary: #154E80; --accent: #38bdf8; --bg: #0f172a; }
@@ -32,97 +36,55 @@
         
         h2 { text-align: center; color: var(--accent); margin-bottom: 20px; font-weight: 900; font-size: 1.5rem; }
         
-        .input-group { margin-bottom: 15px; }
-        
         input[type="text"] { 
-            width: 100%; 
-            padding: 14px; 
-            border-radius: 12px; 
-            border: none; 
-            background: #334155; 
-            color: white; 
-            font-size: 14px; 
-            outline: none; 
-            box-sizing: border-box; 
-            margin-bottom: 10px;
+            width: 100%; padding: 14px; border-radius: 12px; border: none; 
+            background: #334155; color: white; font-size: 14px; outline: none; 
+            box-sizing: border-box; margin-bottom: 10px;
         }
         
-        .settings-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
-            margin-top: 10px; 
-        }
+        .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
         
         select, .color-picker { 
-            width: 100%; 
-            padding: 10px; 
-            border-radius: 10px; 
-            background: #334155; 
-            color: white; 
-            border: 1px solid #475569; 
-            outline: none; 
-            cursor: pointer;
-            box-sizing: border-box;
-            height: 45px;
+            width: 100%; padding: 10px; border-radius: 10px; background: #334155; 
+            color: white; border: 1px solid #475569; outline: none; cursor: pointer;
+            box-sizing: border-box; height: 45px;
         }
 
         .label { font-size: 11px; color: #94a3b8; display: block; margin-bottom: 4px; text-align: right; }
-
         .full-width { grid-column: span 2; }
         
         .checkbox-card { 
-            background: #0f172a; 
-            padding: 12px; 
-            border-radius: 12px; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            cursor: pointer; 
-            border: 1px solid #38bdf8; 
-            user-select: none;
+            background: #0f172a; padding: 12px; border-radius: 12px; 
+            display: flex; align-items: center; gap: 10px; cursor: pointer; 
+            border: 1px solid #38bdf8; user-select: none;
         }
         
         #canvas-container { 
-            margin: 20px 0; 
-            display: flex; 
-            justify-content: center; 
-            background: white; 
-            border-radius: 15px; 
-            padding: 10px; 
-            min-height: 250px; 
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1); 
-            overflow: hidden;
+            margin: 20px auto; 
+            display: flex; justify-content: center; align-items: center;
+            background: white; border-radius: 15px; padding: 10px; 
+            width: 180px; height: 180px; 
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1); overflow: hidden;
         }
 
-        /* Responsive QR Canvas */
-        #canvas-container canvas, #canvas-container svg {
-            max-width: 100% !important;
-            height: auto !important;
-        }
+        #canvas-container svg { width: 150px !important; height: 150px !important; }
         
         button { 
-            padding: 14px; 
-            border-radius: 12px; 
-            border: none; 
-            cursor: pointer; 
-            font-weight: bold; 
-            width: 100%; 
-            transition: 0.2s; 
-            font-size: 15px; 
+            padding: 14px; border-radius: 12px; border: none; cursor: pointer; 
+            font-weight: bold; width: 100%; transition: 0.2s; font-size: 15px; 
         }
         
         .short-btn { background: var(--accent); color: #0f172a; margin-bottom: 5px; }
-        .dl-btn { background: #10b981; color: white; margin-top: 15px; }
-        button:active { transform: scale(0.96); }
-
-        /* Media Queries بۆ مۆبایلە زۆر بچووکەکان */
-        @media (max-width: 400px) {
-            .settings-grid { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-            .app-container { padding: 15px; }
-            h2 { font-size: 1.2rem; }
+        .dl-svg { background: #f59e0b; color: white; margin-top: 15px; }
+        .dl-png { background: #10b981; color: white; margin-top: 10px; }
+        
+        /* ستایلی دوگمەی ئەپەکە */
+        .install-btn { 
+            background: transparent; color: var(--accent); border: 1px solid var(--accent); 
+            margin-top: 20px; font-size: 12px; padding: 8px; display: none;
         }
+
+        button:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
@@ -132,7 +94,7 @@
     
     <div class="input-group">
         <span class="label">لینک لێرە دابنێ:</span>
-        <input type="text" id="qr-data" placeholder="https://..." value="JEC POST">
+        <input type="text" id="qr-data" placeholder="https://..." value="">
         <button class="short-btn" onclick="shortenLink()">کورتکردنەوە و دروستکردن</button>
     </div>
 
@@ -168,13 +130,16 @@
 
     <div id="canvas-container"></div>
 
-    <button class="dl-btn" onclick="download()">داگرتنی وێنە (PNG)</button>
+    <button class="dl-svg" onclick="downloadSVG()">داگرتنی ڤیکتۆر (SVG پڕۆ)</button>
+    <button class="dl-png" onclick="downloadPNG()">داگرتنی وێنە (PNG)</button>
+    
+    <button id="installApp" class="install-btn">دابەزاندن وەک ئەپلیکەیشن (Install App)</button>
 </div>
 
 <script>
     const qrCode = new QRCodeStyling({
-        width: 300,
-        height: 300,
+        width: 150,
+        height: 150,
         type: "svg",
         data: "JEC POST",
         dotsOptions: { type: "rounded", color: "#154E80" },
@@ -184,6 +149,26 @@
         qrOptions: { errorCorrectionLevel: "H" }
     });
 
+    // --- بەشی PWA و Install ---
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        document.getElementById('installApp').style.display = 'block';
+    });
+
+    document.getElementById('installApp').addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                document.getElementById('installApp').style.display = 'none';
+            }
+            deferredPrompt = null;
+        }
+    });
+
+    // --- بەشەکانی تری کۆدەکەت ---
     async function shortenLink() {
         const url = document.getElementById('qr-data').value;
         if(!url || url === "JEC POST") return;
@@ -220,12 +205,25 @@
         });
     }
 
-    function download() {
-        qrCode.download({ name: "JEC-QR", extension: "png" });
+    function downloadPNG() {
+        const options = { ...qrCode._options, width: 1000, height: 1000 };
+        const tempQr = new QRCodeStyling(options);
+        tempQr.download({ name: "SHVAN-QR", extension: "png" });
+    }
+
+    function downloadSVG() {
+        const options = { ...qrCode._options, width: 1000, height: 1000 };
+        const tempQr = new QRCodeStyling(options);
+        tempQr.download({ name: "SHVAN-VECTOR", extension: "svg" });
     }
 
     qrCode.append(document.getElementById("canvas-container"));
     updateQR();
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGZ1bmN0aW9uKGV2ZW50KSB7IH0pOw==');
+    }
 </script>
 
 </body>
